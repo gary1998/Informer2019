@@ -50,7 +50,7 @@ class App extends Component {
                         </Navbar.Collapse>
                     </Navbar>
                     <div className="content">
-                        <Route exact path="/" render={() => <Home lat={this.state.store.lat} lon={this.state.store.lon} hosps={this.state.store.hosps} pol={this.state.store.pol} fs={this.state.store.fs}/>}/>
+                        <Route exact path="/" render={() => <Home name={this.state.store.name} email={this.state.store.email} phone={this.state.store.phone} lat={this.state.store.lat} lon={this.state.store.lon} hosps={this.state.store.hosps} pol={this.state.store.pol} fs={this.state.store.fs}/>}/>
                         <Route path="/report" render={() => <Report name={this.state.store.name} email={this.state.store.email} phone={this.state.store.phone} lat={this.state.store.lat} lon={this.state.store.lon} hosps={this.state.store.hosps} pol={this.state.store.pol} fs={this.state.store.fs}/>}/>
                         <Route path="/channel" render={() => <Channel name={this.state.store.name} email={this.state.store.email} phone={this.state.store.phone} lat={this.state.store.lat} lon={this.state.store.lon} hosps={this.state.store.hosps} pol={this.state.store.pol} fs={this.state.store.fs}/>}/>
                         <Route path="/profile" render={() => <Profile name={this.state.store.name} email={this.state.store.email} phone={this.state.store.phone} lat={this.state.store.lat} lon={this.state.store.lon} hosps={this.state.store.hosps} pol={this.state.store.pol} fs={this.state.store.fs}/>}/>

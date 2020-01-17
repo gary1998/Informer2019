@@ -11,12 +11,12 @@ class Report extends Component {
         <Tabs defaultActiveKey="auto" id="uncontrolled-tab-example">
           <Tab eventKey="auto" title="Fast Report">
               <Container>
-                <FastReportForm name={this.props.name} email={this.props.email} phone={this.props.phone}/>
+                <FastReportForm name={this.props.name} email={this.props.email} phone={this.props.phone} lat={this.props.lat} lon={this.props.lon} hosp={this.props.hosps[0]} pol={this.props.pol[0]} fs={this.props.fs[0]}/>
               </Container>
           </Tab>
           <Tab eventKey="manual" title="Detailed Report">
               <Container>
-                <DetailedReportForm lat={this.props.lat} lon={this.props.lon} hosp={this.props.hosps[0]} pol={this.props.pol[0]} fs={this.props.fs[0]}/>
+                <DetailedReportForm name={this.props.name} email={this.props.email} phone={this.props.phone} lat={this.props.lat} lon={this.props.lon} hosp={this.props.hosps[0]} pol={this.props.pol[0]} fs={this.props.fs[0]}/>
               </Container>
           </Tab>
         </Tabs>

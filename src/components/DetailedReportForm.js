@@ -30,12 +30,12 @@ class DetailedReportForm extends Component {
     }
 
     sendReport = () => {
-        if(!this.props.phone){
+        if(!this.props.email){
             alert("You need to login first to report.");
         }
         else{
             this.setState({busy: true});
-            fetch("http://localhost:8000/addDetailedReport", {
+            fetch("http://localhost:8000/addReport", {
                 headers: {"Content-Type": "application/json"},
                 method: "POST",
                 body: JSON.stringify({
@@ -46,6 +46,7 @@ class DetailedReportForm extends Component {
                     },
                     "IncidentType": this.state.preview,
                     "DateTime": this.state.datetime,
+                    "Report Time": new Date().getTime(),
                     "Latitude": this.state.lat,
                     "Longitude": this.state.lon,
                     "Nearest Hospital": this.state.nearestHosp,

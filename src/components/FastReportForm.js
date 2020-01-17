@@ -13,12 +13,12 @@ class FastReportForm extends Component {
     }
 
     sendReport = () => {
-        if(!this.props.phone){
+        if(!this.props.email){
             alert("You need to login first to report.");
         }
         else{
             this.setState({busy: true});
-            fetch("http://localhost:8000/addFastReport", {
+            fetch("http://localhost:8000/addReport", {
                 headers: {"Content-Type": "application/json"},
                 method: "POST",
                 body: JSON.stringify({
@@ -27,7 +27,15 @@ class FastReportForm extends Component {
                         "E-Mail": this.props.email,
                         "Phone": this.props.phone
                     },
-                    "ImageBase64": this.state.preview,
+                    "Incident Type": "Unknown",
+                    "DateTime": "Unknown",
+                    "Report Time": new Date().getTime(),
+                    "Latitude": this.props.lat,
+                    "Longitude": this.props.lon,
+                    "Nearest Hospital": this.props.hosp,
+                    "Nearest Police Station": this.props.pol,
+                    "Nearest Fire Station": this.props.fs,
+                    "Attachments": this.state.preview,
                     "Comments": this.state.comments
                 })
             }).then(body => {
