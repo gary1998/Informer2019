@@ -30,34 +30,39 @@ class DetailedReportForm extends Component {
     }
 
     sendReport = () => {
-        this.setState({busy: true});
-        fetch("http://localhost:8000/addManualReport", {
-            headers: {"Content-Type": "application/json"},
-            method: "POST",
-            body: JSON.stringify({
-                "Reporter": {
-                    "Name": this.props.name,
-                    "E-Mail": this.props.email,
-                    "Phone": this.props.phone
-                },
-                "IncidentType": this.state.preview,
-                "DateTime": this.state.datetime,
-                "Latitude": this.state.lat,
-                "Longitude": this.state.lon,
-                "Nearest Hospital": this.state.nearestHosp,
-                "Nearest Police Station": this.state.nearestPol,
-                "Nearest Fire Station": this.state.nearestFs,
-                "Attachments": this.state.file,
-                "Comments": this.state.comments
-            })
-        }).then(body => {
-            return body.json()
-        }).then(data => {
-            if(data.ok){
-                alert(`Reported successfully. Kindly note ${data.insertedId} for tracking the status.`);
-                this.setState({file: '', busy: false, comments: ''});
-            }
-        })
+        if(!this.props.phone){
+            alert("You need to login first to report.");
+        }
+        else{
+            this.setState({busy: true});
+            fetch("http://localhost:8000/addDetailedReport", {
+                headers: {"Content-Type": "application/json"},
+                method: "POST",
+                body: JSON.stringify({
+                    "Reporter": {
+                        "Name": this.props.name,
+                        "E-Mail": this.props.email,
+                        "Phone": this.props.phone
+                    },
+                    "IncidentType": this.state.preview,
+                    "DateTime": this.state.datetime,
+                    "Latitude": this.state.lat,
+                    "Longitude": this.state.lon,
+                    "Nearest Hospital": this.state.nearestHosp,
+                    "Nearest Police Station": this.state.nearestPol,
+                    "Nearest Fire Station": this.state.nearestFs,
+                    "Attachments": this.state.file,
+                    "Comments": this.state.comments
+                })
+            }).then(body => {
+                return body.json()
+            }).then(data => {
+                if(data.ok){
+                    alert(`Reported successfully. Kindly note ${data.insertedId} for tracking the status.`);
+                    this.setState({file: '', busy: false, comments: ''});
+                }
+            });
+        }
     }
 
     handleChangeFileInput = (e) => {

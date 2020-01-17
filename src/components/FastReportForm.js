@@ -13,27 +13,32 @@ class FastReportForm extends Component {
     }
 
     sendReport = () => {
-        this.setState({busy: true});
-        fetch("http://localhost:8000/addAutoReport", {
-            headers: {"Content-Type": "application/json"},
-            method: "POST",
-            body: JSON.stringify({
-                "Reporter": {
-                    "Name": this.props.name,
-                    "E-Mail": this.props.email,
-                    "Phone": this.props.phone
-                },
-                "ImageBase64": this.state.preview,
-                "Comments": this.state.comments
-            })
-        }).then(body => {
-            return body.json()
-        }).then(data => {
-            if(data.ok){
-                alert(`Reported successfully. Kindly note ${data.insertedId} for tracking the status.`);
-                this.setState({preview: '', busy: false, comments: ''});
-            }
-        })
+        if(!this.props.phone){
+            alert("You need to login first to report.");
+        }
+        else{
+            this.setState({busy: true});
+            fetch("http://localhost:8000/addFastReport", {
+                headers: {"Content-Type": "application/json"},
+                method: "POST",
+                body: JSON.stringify({
+                    "Reporter": {
+                        "Name": this.props.name,
+                        "E-Mail": this.props.email,
+                        "Phone": this.props.phone
+                    },
+                    "ImageBase64": this.state.preview,
+                    "Comments": this.state.comments
+                })
+            }).then(body => {
+                return body.json()
+            }).then(data => {
+                if(data.ok){
+                    alert(`Reported successfully. Kindly note ${data.insertedId} for tracking the status.`);
+                    this.setState({preview: '', busy: false, comments: ''});
+                }
+            });
+        }
     }
 
     handleChangeFileInput = (e) => {
