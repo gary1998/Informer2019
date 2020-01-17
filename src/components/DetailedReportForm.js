@@ -11,6 +11,7 @@ class DetailedReportForm extends Component {
             nearestHosp: this.props.hosp ? this.props.hosp.name : '',
             nearestPol: this.props.pol ? this.props.pol.name : '',
             nearestFs: this.props.fs ? this.props.fs.name : '',
+            comments: '',
             file: '',
             busy: false
         }
@@ -26,6 +27,7 @@ class DetailedReportForm extends Component {
         var date = iso.substring(0, 11);
         var hours = obj.getHours();
         var minutes = obj.getMinutes();
+        console.log(date+hours+":"+minutes);
         this.setState({datetime: date+hours+":"+minutes});
     }
 
@@ -39,21 +41,21 @@ class DetailedReportForm extends Component {
                 headers: {"Content-Type": "application/json"},
                 method: "POST",
                 body: JSON.stringify({
-                    "Reporter": {
-                        "Name": this.props.name,
-                        "E-Mail": this.props.email,
-                        "Phone": this.props.phone
+                    "reported_by": {
+                        "name": this.props.name,
+                        "email": this.props.email,
+                        "phone": this.props.phone
                     },
-                    "IncidentType": this.state.preview,
-                    "DateTime": this.state.datetime,
-                    "Report Time": new Date().getTime(),
-                    "Latitude": this.state.lat,
-                    "Longitude": this.state.lon,
-                    "Nearest Hospital": this.state.nearestHosp,
-                    "Nearest Police Station": this.state.nearestPol,
-                    "Nearest Fire Station": this.state.nearestFs,
-                    "Attachments": this.state.file,
-                    "Comments": this.state.comments
+                    "incident_type": this.state.type,
+                    "incident_date_time": this.state.datetime,
+                    "report_time": new Date().getTime(),
+                    "latitude": this.props.lat,
+                    "longitude": this.props.lon,
+                    "nearest_hospital": this.state.nearestHosp,
+                    "nearest_police_station": this.state.nearestPol,
+                    "nearest_fire_station": this.state.nearestFs,
+                    "attachments": this.state.file,
+                    "comments": this.state.comments
                 })
             }).then(body => {
                 return body.json()
@@ -103,6 +105,10 @@ class DetailedReportForm extends Component {
         this.setState({type: e.target.value});
     }
 
+    handleChangeComments = e => {
+        this.setState({comments: e.target.value});
+    }
+
     render() {
         return (
             <Form className='reportPage'>
@@ -133,7 +139,7 @@ class DetailedReportForm extends Component {
                     </Form.Group>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>Date of incident</Form.Label>
+                    <Form.Label>Date Time of incident</Form.Label>
                     <Form.Control type="datetime-local" value={this.state.datetime} onChange={e => {this.handleDateTimeChange(e)}}/>
                 </Form.Group>
                 <Form.Group>
@@ -160,7 +166,7 @@ class DetailedReportForm extends Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Comments</Form.Label>
-                    <Form.Control as="textarea"/>
+                    <Form.Control as="textarea" value={this.state.comments} onChange={e => this.handleChangeComments(e)}/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Attachments</Form.Label>

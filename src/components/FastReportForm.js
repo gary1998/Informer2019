@@ -22,21 +22,21 @@ class FastReportForm extends Component {
                 headers: {"Content-Type": "application/json"},
                 method: "POST",
                 body: JSON.stringify({
-                    "Reporter": {
-                        "Name": this.props.name,
-                        "E-Mail": this.props.email,
-                        "Phone": this.props.phone
+                    "reported_by": {
+                        "name": this.props.name,
+                        "email": this.props.email,
+                        "phone": this.props.phone
                     },
-                    "Incident Type": "Unknown",
-                    "DateTime": "Unknown",
-                    "Report Time": new Date().getTime(),
-                    "Latitude": this.props.lat,
-                    "Longitude": this.props.lon,
-                    "Nearest Hospital": this.props.hosp,
-                    "Nearest Police Station": this.props.pol,
-                    "Nearest Fire Station": this.props.fs,
-                    "Attachments": this.state.preview,
-                    "Comments": this.state.comments
+                    "incident_type": "Unknown",
+                    "incident_date_time": "Unknown",
+                    "report_time": new Date().getTime(),
+                    "latitude": this.props.lat,
+                    "longitude": this.props.lon,
+                    "nearest_hospital": this.props.hosp ? this.props.hosp.name : '',
+                    "nearest_police_station": this.props.pol ? this.props.pol.name : '',
+                    "nearest_fire_station": this.props.fs ? this.props.fs.name : '',
+                    "attachments": this.state.preview,
+                    "comments": this.state.comments
                 })
             }).then(body => {
                 return body.json()
