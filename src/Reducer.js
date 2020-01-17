@@ -9,6 +9,15 @@ export const reducer = (state, action) => {
                 fs: action.payload.fs
             });
         }
+        
+        case "USER_SET": {
+            return Object.assign(state, {
+                name: action.payload.name,
+                email: action.payload.email,
+                phone: action.payload.phone
+            })
+        }
+
         default:
             return state;
     }

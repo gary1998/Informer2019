@@ -8,6 +8,9 @@ const enhancer = composeEnhancers(
 );
 
 const store = createStore(reducer, {
+    name: '',
+    email: '',
+    phone: '',
     lat: 0,
     lon: 0,
     hosps: [],

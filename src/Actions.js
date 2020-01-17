@@ -31,26 +31,15 @@ export const setEnv = () => {
     }
 }
 
-export const analyzeImage = () => {
-    return {
-        type: "IMAGE_ANALYSIS"
+export const setUser = () => {
+    return User => {
+        User({
+            type: "USER_SET",
+            payload: {
+                name: "Gaurav Goswami",
+                email: "gouravgoswami48@gmail.com",
+                phone: "7017925280"
+            }
+        })
     }
 }
-
-// const watchGeoLocation = () => {
-//     return new Promise((resolve, reject) => {
-//         if (!navigator.geolocation) {
-//             console.error('Geolocation is not supported by your browser');
-//             reject(0);
-//         } else {
-//             console.log('Getting Geolocation...');
-//             navigator.geolocation.watchPosition((pos) => {
-//                 console.log('Geolocation attained successfully', pos);
-//                 resolve(pos.coords);
-//             }, function(err){
-//                 console.error("Error while locating user", err);
-//                 reject(0);
-//             }, { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 } );
-//         }
-//     }); 
-// }

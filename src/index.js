@@ -5,9 +5,10 @@ import store from './Store';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from 'react-redux';
-import {setEnv} from './Actions';
+import {setEnv, setUser} from './Actions';
 
 store.dispatch(setEnv());
+store.dispatch(setUser());
 
 ReactDOM.render(
     <Provider store={store}>

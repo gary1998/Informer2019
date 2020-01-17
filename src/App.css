@@ -39,8 +39,11 @@
     height: 75vh;
 }
 
-.autoReportPage {
+.reportPage {
+    max-height: 60vh;
     padding: 2vh 0.2vw 2vh 0.2vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .canvasContainer {
@@ -54,19 +57,4 @@
     max-width: 80vw;
     min-height: 28vh;
     max-height: 28vh; 
-}
-
-.manualReportPage {
-    max-height: 60vh;
-    padding: 2vh 0.2vw 2vh 0.2vw;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.severityChooser {
-    width: 100%;
-}
-
-.severityBtn {
-    min-width: 30%;
 }
