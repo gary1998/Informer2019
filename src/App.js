@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faReceipt, faNewspaper, faUser } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 import store from './Store';
+import Login from './pages/Login';
 
 class App extends Component {
 
@@ -20,6 +21,9 @@ class App extends Component {
         super(props);
         this.state = {
             store: {
+                name: '',
+                email: '',
+                phone: '',
                 lat: 0,
                 lon: 0,
                 hosps: [],
@@ -36,7 +40,8 @@ class App extends Component {
         })
 
         return (
-            <HashRouter>
+            this.state.store.name ?
+            (<HashRouter>
                 <div>
                     <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
                         <Navbar.Brand href="#">
@@ -64,7 +69,7 @@ class App extends Component {
                         </div>
                     </Navbar>
                 </div>
-        </HashRouter>
+        </HashRouter>) : (<Login/>)
         );
     }
 }

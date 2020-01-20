@@ -34,7 +34,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Map center={[this.props.lat, this.props.lon]} zoom={15} width={1370} height={800}>
+                <Map center={[this.props.lat, this.props.lon]} zoom={13} width={1370} height={800}>
                     <Marker anchor={[this.props.lat, this.props.lon]} onClick={()=>{this.onLocationClick()}}></Marker>
                     {
                         this.props.pol.map((value, key) => (

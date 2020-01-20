@@ -31,14 +31,14 @@ export const setEnv = () => {
     }
 }
 
-export const setUser = () => {
+export const setUser = (userObj) => {
     return User => {
         User({
             type: "USER_SET",
             payload: {
-                name: "Gaurav Goswami",
-                email: "gouravgoswami48@gmail.com",
-                phone: "7017925280"
+                name: userObj.name,
+                email: userObj.email,
+                phone: userObj.phone
             }
         })
     }
