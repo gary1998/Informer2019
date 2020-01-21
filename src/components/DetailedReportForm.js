@@ -27,7 +27,6 @@ class DetailedReportForm extends Component {
         var date = iso.substring(0, 11);
         var hours = obj.getHours();
         var minutes = obj.getMinutes();
-        console.log(date+hours+":"+minutes);
         this.setState({datetime: date+hours+":"+minutes});
     }
 
