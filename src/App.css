@@ -67,8 +67,13 @@
     border-radius: 5px;
 }
 
+.verifyBtn {
+    width: 100%;
+}
+
 .loginContainer {
     position: relative;
+    margin-top: 10vh;
     animation-name: top-transition;
     animation-duration: 2s;
     animation-timing-function: ease;
@@ -81,7 +86,7 @@
         opacity: 0;
     }
     to {
-        margin-top: 12vh;
+        margin-top: 0.1vh;
         opacity: 1;
     }
 }
