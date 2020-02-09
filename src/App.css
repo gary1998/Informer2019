@@ -80,6 +80,10 @@
     animation-fill-mode: forwards;
 }
 
+.map__reactleaflet {
+    flex: 1 0;
+}
+
 @keyframes top-transition {
     from {
         margin-top: -40vh;

@@ -7,7 +7,7 @@ export const setEnv = () => {
             console.error("Geolocation isn't supported on this device!");
         }
         else{
-            geolocation.watchPosition(position => {
+            geolocation.getCurrentPosition(position => {
                 Promise.all([
                     fetch(serverURL+`/getHosps?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=10`).then(body => body.json()),
                     fetch(serverURL+`/getPolice?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=10`).then(body => body.json()),

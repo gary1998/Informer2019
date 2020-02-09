@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Map from 'pigeon-maps';
 import Marker from 'pigeon-marker/react';
 import Overlay from 'pigeon-overlay';
-import {Toast} from 'react-bootstrap';
+import { Toast } from 'react-bootstrap';
 
 class Home extends Component {
 
@@ -32,9 +32,23 @@ class Home extends Component {
     }
 
     render() {
+
+        const providers = {
+            osm: (x, y, z) => {
+              const s = String.fromCharCode(97 + (x + y + z) % 3)
+              return `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`
+            },
+            wikimedia: (x, y, z, dpr) => {
+              return `https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}${dpr >= 2 ? '@2x' : ''}.png`
+            },
+            stamen: (x, y, z, dpr) => {
+              return `https://stamen-tiles.a.ssl.fastly.net/terrain/${z}/${x}/${y}${dpr >= 2 ? '@2x' : ''}.jpg`
+            }
+        }    
+
         return (
             <div>
-                <Map center={[this.props.lat, this.props.lon]} zoom={13} width={1370} height={800}>
+                <Map center={[this.props.lat, this.props.lon]} zoom={13} width={window.innerWidth} height={window.innerHeight} provider={providers['stamen']}>
                     <Marker anchor={[this.props.lat, this.props.lon]} onClick={()=>{this.onLocationClick()}}></Marker>
                     {
                         this.props.pol.map((value, key) => (
